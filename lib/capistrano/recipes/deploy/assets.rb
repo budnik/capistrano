@@ -103,7 +103,7 @@ namespace :deploy do
     end
 
     desc <<-DESC
-      Run the asset clean rake task. Use with caution, this will delete \
+      Run the asset clobber rake task. Use with caution, this will delete \
       all of your compiled assets. You can specify the full path \
       to the rake executable by setting the rake variable. You can also \
       specify additional environment variables to pass to rake via the \
@@ -114,7 +114,7 @@ namespace :deploy do
         set :asset_env, "RAILS_GROUPS=assets"
     DESC
     task :clean, :roles => lambda { assets_role }, :except => { :no_release => true } do
-      run "cd #{latest_release} && #{rake} RAILS_ENV=#{rails_env} #{asset_env} assets:clean"
+      run "cd #{latest_release} && #{rake} RAILS_ENV=#{rails_env} #{asset_env} assets:clobber"
     end
 
     desc <<-DESC
